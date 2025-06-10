@@ -1,4 +1,4 @@
-# python tests/stockout_senegal_mix.py
+# python stockout_discontinue_senegal_mix.py
 
 import pandas as pd
 import numpy as np

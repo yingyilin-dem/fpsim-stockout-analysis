@@ -1,12 +1,13 @@
-# python -m tests.stockout_senegal.py
+# python stockout_discontinue_senegal_mcpr.py
 
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import fpsim as fp
-from fpsim.stockout import StockoutIntervention
-from fpsim.methods import make_methods
 
+import fpsim as fp
+from fpsim.sim import Sim
+from fpsim.methods import make_methods
+from stockout_discontinue import StockoutIntervention
 
 # --- Helper to save agent-level data ---
 def save_agent_data(sim, filename, year=None):
@@ -43,7 +44,7 @@ stockout_years = range(2025, 2031)
 
 
 # --- Baseline simulation ---
-sim_base = fp.Sim(location=location, start_year=start_year, end_year=end_year, n_agents=n_agents, label='baseline')
+sim_base = Sim(location=location, start_year=start_year, end_year=end_year, n_agents=n_agents, label='baseline')
 sim_base.run()
 save_agent_data(sim_base, 'baseline_2030_agents.csv', year=2030)
 
@@ -52,7 +53,7 @@ save_agent_data(sim_base, 'baseline_2030_agents.csv', year=2030)
 stockout_m1_probs = {year: {7: 1.0} for year in stockout_years}
 stockout_m1 = StockoutIntervention(stockout_probs=stockout_m1_probs, seed=42)
 
-sim_m1 = fp.Sim(location=location, start_year=start_year, end_year=end_year, n_agents=n_agents, label='stockout_m1')
+sim_m1 = Sim(location=location, start_year=start_year, end_year=end_year, n_agents=n_agents, label='stockout_m1')
 sim_m1['interventions'] = [stockout_m1]
 sim_m1.run()
 save_agent_data(sim_m1, 'stockout_m1_2030_agents.csv', year=2030)
@@ -62,7 +63,7 @@ save_agent_data(sim_m1, 'stockout_m1_2030_agents.csv', year=2030)
 stockout_m3_probs = {year: {3: 1.0} for year in stockout_years}
 stockout_m3 = StockoutIntervention(stockout_probs=stockout_m3_probs, seed=42)
 
-sim_m3 = fp.Sim(location=location, start_year=start_year, end_year=end_year, n_agents=n_agents, label='stockout_m3')
+sim_m3 = Sim(location=location, start_year=start_year, end_year=end_year, n_agents=n_agents, label='stockout_m3')
 sim_m3['interventions'] = [stockout_m3]
 sim_m3.run()
 save_agent_data(sim_m3, 'stockout_m3_2030_agents.csv', year=2030)
@@ -72,7 +73,7 @@ save_agent_data(sim_m3, 'stockout_m3_2030_agents.csv', year=2030)
 stockout_both_probs = {year: {7: 1.0, 3: 1.0} for year in stockout_years}
 stockout_both = StockoutIntervention(stockout_probs=stockout_both_probs, seed=42)
 
-sim_both = fp.Sim(location=location, start_year=start_year, end_year=end_year, n_agents=n_agents, label='stockout_both')
+sim_both = Sim(location=location, start_year=start_year, end_year=end_year, n_agents=n_agents, label='stockout_both')
 sim_both['interventions'] = [stockout_both]
 sim_both.run()
 save_agent_data(sim_both, 'stockout_both_2030_agents.csv', year=2030)

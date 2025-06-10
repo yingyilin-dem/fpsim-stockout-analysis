@@ -1,4 +1,4 @@
-# python tests/generate_agent_csvs_all_years.py
+# python generate_agent_csvs_all_years.py
 
 """
 ✅ Runs 4 FPsim scenarios
@@ -11,7 +11,7 @@ import pandas as pd
 import numpy as np
 import os
 import fpsim as fp
-from fpsim.stockout import StockoutIntervention
+from stockout_discontinue import StockoutIntervention
 from fpsim.methods import make_methods
 
 # --- Helper to save agent-level data ---

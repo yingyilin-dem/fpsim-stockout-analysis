@@ -4,7 +4,7 @@
 - Also plot CPR results with and without the stockout
 """
 
-# python -m tests.test_stockout_unit_compare
+# python -m test_stockout_unit_compare
 
 import unittest
 import os
@@ -13,7 +13,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from fpsim.sim import Sim, MultiSim
 from fpsim.parameters import pars
-from fpsim.stockout import StockoutIntervention
+from stockout import StockoutIntervention
 import matplotlib.pyplot as plt
 
 class TestStockoutDiscontinuation(unittest.TestCase):
