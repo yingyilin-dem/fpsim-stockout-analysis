@@ -1,9 +1,8 @@
-# fpsim/stockout.py
+
 
 import numpy as np
 from fpsim.interventions import Intervention
 from fpsim.utils import bt
-
 
 class StockoutIntervention(Intervention):
     """

@@ -1,4 +1,4 @@
-# python stockout_discontinue_senegal_mcpr.py
+# run with: python stockout_discontinue_senegal_mcpr.py
 
 import pandas as pd
 import numpy as np
@@ -38,7 +38,7 @@ def save_agent_data(sim, filename, year=None):
 # --- Simulation settings ---
 location = 'senegal'
 start_year = 2020
-end_year = 2030
+end_year = 2040
 n_agents = 1000
 stockout_years = range(2025, 2031)
 
@@ -88,9 +88,11 @@ plt.plot(sim_both.results['t'], sim_both.results['cpr'] * 100, label='100% stock
 plt.axvspan(2025, 2030, color='gray', alpha=0.2, label='Stockout period')
 plt.xlabel('Year')
 plt.ylabel('mCPR (%)')
-plt.title('Senegal: mCPR Impact of Method-Specific Stockout Scenarios')
-plt.ylim(0, 40)
+plt.title('Senegal: mCPR Impact of Method-Specific Stockout Scenarios (Discontinue)')
+plt.ylim(0, 50)
 plt.grid(True)
 plt.legend()
 plt.tight_layout()
+plt.xticks(ticks=plt.xticks()[0], labels=[f"{int(t)}" for t in plt.xticks()[0]])
+plt.xlim(2020, 2040)
 plt.show()
